@@ -1,98 +1,273 @@
-<!-- ... existing code ... -->
-        /* Scroll Reveal Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(35px);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surya Pramuditya Prayogi - Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">Surya<span>.</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact" class="nav-btn">Hire Me</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
 
-        /* Fallback jika JS belum/tidak berjalan di Vercel Preview */
-        .no-js .reveal {
-            opacity: 1 !important;
-            transform: none !important;
-        }
+    <!-- HOME SECTION -->
+    <section id="home">
+        <span class="hero-badge reveal">Portfolio</span>
+        <h1 class="hero-title reveal">Surya Pramuditya Prayogi</h1>
+        <p class="hero-subtitle reveal">Software Engineering & IoT Developer</p>
+        <div class="btn-group reveal">
+            <a href="#projects" class="btn-primary">View Projects</a>
+            <a href="#contact" class="btn-secondary">Contact Me</a>
+        </div>
+    </section>
 
-        /* Background Glow Ambient Spheres */
-<!-- ... existing code ... -->
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fallback stylesheet jika Javascript tertunda di Vercel preview -->
-    <noscript>
-        <style>
-            .reveal { opacity: 1 !important; transform: none !important; }
-        </style>
-    </noscript>
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="section-header reveal">
+            <span class="section-subtitle">Biography</span>
+            <h2 class="section-title">About Me</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <p>Halo! Saya <strong>Surya Pramuditya Prayogi</strong>, mahasiswa Teknologi Rekayasa Perangkat Lunak (NIM: B26006) yang berfokus pada pengembangan sistem IoT dan arsitektur web modern.</p>
+                <p>Saya memiliki pengalaman merancang integrasi hardware mikrokontroler (ESP32/Arduino) dengan cloud service, manajemen jaringan, serta membangun aplikasi web yang responsif dan aman.</p>
+            </div>
+            <div class="about-stats reveal">
+                <div class="stat-card">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">3+</span>
+                    <span class="stat-label">Years Learning</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Font Awesome 6 CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<!-- ... existing code ... -->
-    <!-- JAVASCRIPT INTERACTIVE LOGIC -->
-    <script>
-        // Dynamic Current Year
-        document.getElementById('year').textContent = new Date().getFullYear();
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+        <div class="section-header reveal">
+            <span class="section-subtitle">Expertise</span>
+            <h2 class="section-title">Technical Skills</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card reveal">
+                <i class="fas fa-microchip skill-icon"></i>
+                <h3 class="skill-title">IoT & Hardware</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-info"><span>ESP32 / Arduino</span><span>90%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-info"><span>RFID & Sensors</span><span>85%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <i class="fas fa-code skill-icon"></i>
+                <h3 class="skill-title">Web Development</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-info"><span>HTML/CSS/JS</span><span>88%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-info"><span>PHP / C++</span><span>80%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <i class="fas fa-network-wired skill-icon"></i>
+                <h3 class="skill-title">Network & Systems</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-info"><span>Cisco / Mikrotik</span><span>82%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 82%;"></div></div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-info"><span>Linux / Termux</span><span>85%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Mobile Drawer Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience">
+        <div class="section-header reveal">
+            <span class="section-subtitle">Milestones</span>
+            <h2 class="section-title">Experience & Education</h2>
+        </div>
+        <div class="timeline reveal">
+            <div class="timeline-item">
+                <span class="timeline-date">2024 - Sekarang</span>
+                <h3 class="timeline-title">Teknologi Rekayasa Perangkat Lunak</h3>
+                <p class="timeline-company">Pendidikan Tinggi vokasi / RPL</p>
+                <p>Fokus pada rekayasa perangkat lunak, algoritma, pemrograman C++, backend architecture, dan IoT hardware system.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">2024</span>
+                <h3 class="timeline-title">Pengembang AQUA TRACK IoT</h3>
+                <p class="timeline-company">Project Mandiri</p>
+                <p>Merancang sistem monitoring air real-time berbasis ESP32, terintegrasi dengan platform cloud Blynk dan protokol HTTP.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">2023 - 2024</span>
+                <h3 class="timeline-title">Manajemen SY SHOP Digital</h3>
+                <p class="timeline-company">SY SHOP Commercial</p>
+                <p>Mengelola alur bisnis digital, sistem transaksi elektronik, serta branding platform penjualan digital.</p>
+            </div>
+        </div>
+    </section>
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            }
-        });
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <div class="section-header reveal">
+            <span class="section-subtitle">Portfolio</span>
+            <h2 class="section-title">Selected Projects</h2>
+        </div>
+        
+        <div class="project-filters reveal">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="iot">IoT</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="network">Network</button>
+        </div>
 
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
-                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
-            });
-        });
+        <div class="projects-grid">
+            <div class="project-card reveal" data-category="iot">
+                <div>
+                    <span class="project-category">IoT System</span>
+                    <h3>AQUA TRACK</h3>
+                    <p>Sistem monitoring kualitas dan debit air otomatis menggunakan ESP32 dan IoT Blynk Platform secara real-time.</p>
+                </div>
+                <button class="project-btn" onclick="openModal('AQUA TRACK', 'AQUA TRACK adalah solusi pemantauan air nirkabel menggunakan ESP32 dan Blynk Cloud. Fitur utama mencakup telemetry live data, peringatan ambang batas otomatis, dan manajemen konsumsi daya rendah.')">View Details <i class="fas fa-arrow-right"></i></button>
+            </div>
 
-        // IntersectionObserver & Auto-Reveal Fallback (Fix Vercel Blank Page Issue)
-        document.addEventListener('DOMContentLoaded', () => {
-            const revealElements = document.querySelectorAll('.reveal');
-            
-            // Langsung tampilkan elemen yang ada di layar utama
-            revealElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    el.classList.add('active');
-                }
-            });
+            <div class="project-card reveal" data-category="web">
+                <div>
+                    <span class="project-category">E-Commerce / Web</span>
+                    <h3>SY SHOP Ecosystem</h3>
+                    <p>Platform layanan transaksi digital dengan alur checkout instan dan sistem manajemen pembeli terstruktur.</p>
+                </div>
+                <button class="project-btn" onclick="openModal('SY SHOP Ecosystem', 'Platform web bisnis digital yang mempermudah otomatisasi pesanan, pencatatan keuangan, dan verifikasi status pembayaran bagi pelanggan.')">View Details <i class="fas fa-arrow-right"></i></button>
+            </div>
 
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, {
-                threshold: 0.05,
-                rootMargin: '0px 0px 50px 0px'
-            });
+            <div class="project-card reveal" data-category="iot">
+                <div>
+                    <span class="project-category">Smart School / IoT</span>
+                    <h3>RFID School Gate System</h3>
+                    <p>Arsitektur presensi sekolah berbasis kartu RFID terhubung ke dashboard web pengawas & gateway pembayaran.</p>
+                </div>
+                <button class="project-btn" onclick="openModal('RFID School Gate System', 'Prototip infrastruktur kartu RFID pintar untuk absensi otomatis siswa dan integrasi pembayaran kantin secara langsung ke server cloud.')">View Details <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
 
-            revealElements.forEach(el => revealObserver.observe(el));
+    <!-- SERVICES SECTION -->
+    <section id="services">
+        <div class="section-header reveal">
+            <span class="section-subtitle">Offerings</span>
+            <h2 class="section-title">My Services</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <i class="fas fa-laptop-code service-icon"></i>
+                <h3>Web Development</h3>
+                <p>Pembuatan website portofolio, landing page, dan sistem informasi responsif yang cepat dan modern.</p>
+            </div>
+            <div class="service-card reveal">
+                <i class="fas fa-microchip service-icon"></i>
+                <h3>IoT Prototyping</h3>
+                <p>Perancangan perangkat keras pintar berbasis ESP32/Arduino terhubung sensor & kontrol jarak jauh.</p>
+            </div>
+            <div class="service-card reveal">
+                <i class="fas fa-network-wired service-icon"></i>
+                <h3>Network Configuration</h3>
+                <p>Perancangan dan penataan infrastruktur jaringan komputer lokal (LAN/WLAN) yang stabil.</p>
+            </div>
+        </div>
+    </section>
 
-            // Safety Fallback: Tampilkan semua elemen otomatis dalam 1 detik jika observer tertunda di Vercel
-            setTimeout(() => {
-                revealElements.forEach(el => el.classList.add('active'));
-            }, 1000);
-        });
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="section-header reveal">
+            <span class="section-subtitle">Get In Touch</span>
+            <h2 class="section-title">Contact Me</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-boxes reveal">
+                <a href="https://wa.me/6280000000000" target="_blank" class="contact-box">
+                    <i class="fab fa-whatsapp"></i>
+                    <h4>WhatsApp</h4>
+                    <p>Chat Langsung</p>
+                </a>
+                <a href="mailto:emailanda@gmail.com" class="contact-box">
+                    <i class="far fa-envelope"></i>
+                    <h4>Email</h4>
+                    <p>Kirim Pesan</p>
+                </a>
+                <a href="https://instagram.com/" target="_blank" class="contact-box">
+                    <i class="fab fa-instagram"></i>
+                    <h4>Instagram</h4>
+                    <p>Direct Message</p>
+                </a>
+            </div>
 
-        // Active Navigation Highlight Indicator on Scroll (Scroll Spy for 7 Menu Items)
-<!-- ... existing code ... -->
-```
+            <form class="contact-form reveal" id="contact-form">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Email Anda" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-input" rows="5" placeholder="Pesan Anda" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- MODAL PREVIEW -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h3 id="modal-title" style="color: var(--accent-gold); margin-bottom: 15px;"></h3>
+            <p id="modal-text" style="color: var(--text-muted); line-height: 1.8;"></p>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast">Pesan Anda berhasil dikirim!</div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Surya Pramuditya Prayogi. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+</html>
