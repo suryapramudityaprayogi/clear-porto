@@ -1,286 +1,457 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surya Pramuditya Prayogi - Portfolio</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <title>Surya Pramuditya Prayogi | Portfolio</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        onyx: {
+                            900: '#121415', /* Deepest Onyx */
+                            800: '#1A1D1E', /* Dark Onyx */
+                            700: '#242729', /* Card/Surface Onyx */
+                            600: '#353839', /* Classic Onyx */
+                        },
+                        champagne: {
+                            DEFAULT: '#E5C790',
+                            light: '#F5D69D',
+                            dark: '#C7A972',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-    <!-- HEADER / NAVIGATION -->
-    <header>
-        <nav>
-            <a href="#home" class="logo">Surya<span>.</span></a>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact" class="nav-btn">Hire Me</a></li>
-            </ul>
-            <div class="menu-toggle" id="menu-toggle">
-                <i class="fas fa-bars"></i>
+    <style>
+        /* Custom Styles & Utilities */
+        body {
+            background-color: #121415;
+            color: #E2E8F0;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar for Premium Feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121415;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353839;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E5C790;
+        }
+
+        /* Gradient Text */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #F5D69D 0%, #E5C790 50%, #C7A972 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Glassmorphism Navbar */
+        .nav-glass {
+            background: rgba(18, 20, 21, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(229, 199, 144, 0.1);
+        }
+
+        /* Card Hover Effects */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(53, 56, 57, 0.5);
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(229, 199, 144, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(229, 199, 144, 0.15);
+        }
+
+        /* Inputs */
+        .input-premium {
+            background: #1A1D1E;
+            border: 1px solid #353839;
+            transition: all 0.3s ease;
+        }
+        .input-premium:focus {
+            outline: none;
+            border-color: #E5C790;
+            box-shadow: 0 0 0 2px rgba(229, 199, 144, 0.2);
+        }
+
+        /* Reveal on scroll utility class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-poppins antialiased selection:bg-champagne selection:text-onyx-900">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full top-0 z-50 nav-glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 cursor-pointer">
+                    <a href="#" class="text-2xl font-bold tracking-tighter text-white">
+                        S<span class="text-champagne">P</span>P.
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="#home" class="text-gray-300 hover:text-champagne transition-colors duration-300 text-sm font-medium">Home</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-champagne transition-colors duration-300 text-sm font-medium">About</a></li>
+                        <li><a href="#projects" class="text-gray-300 hover:text-champagne transition-colors duration-300 text-sm font-medium">Projects</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-champagne transition-colors duration-300 text-sm font-medium">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-champagne focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
-        </nav>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-onyx-800 border-b border-onyx-600 absolute w-full">
+            <ul class="px-4 pt-2 pb-6 space-y-2 text-center">
+                <li><a href="#home" class="mobile-link block py-3 text-gray-300 hover:text-champagne font-medium">Home</a></li>
+                <li><a href="#about" class="mobile-link block py-3 text-gray-300 hover:text-champagne font-medium">About</a></li>
+                <li><a href="#projects" class="mobile-link block py-3 text-gray-300 hover:text-champagne font-medium">Projects</a></li>
+                <li><a href="#contact" class="mobile-link block py-3 text-gray-300 hover:text-champagne font-medium">Contact</a></li>
+            </ul>
+        </div>
     </header>
 
-    <!-- HOME SECTION -->
-    <section id="home">
-        <span class="hero-badge reveal">Portfolio</span>
-        <h1 class="hero-title reveal">Surya Pramuditya Prayogi</h1>
-        <p class="hero-subtitle reveal">Software Engineering & IoT Developer</p>
-        <div class="btn-group reveal">
-            <a href="#projects" class="btn-primary">View Projects</a>
-            <a href="#contact" class="btn-secondary">Contact Me</a>
-        </div>
-    </section>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+            <!-- Decorative Background Element -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-champagne opacity-[0.03] rounded-full blur-3xl animate-pulse-slow pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full text-center md:text-left flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-2/3 animate-fade-in-up">
+                    <p class="text-champagne font-medium tracking-wide uppercase text-sm mb-4">Welcome to my digital space</p>
+                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
+                        Hi, I'm <br class="hidden md:block" />
+                        <span class="text-gradient-gold">Surya Pramuditya Prayogi</span>
+                    </h1>
+                    <h2 class="text-xl md:text-3xl text-gray-400 font-light mb-8">
+                        Software Engineering Technology Student <br/> Web & IoT Developer &middot; UI/UX Designer
+                    </h2>
+                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="#projects" class="bg-champagne hover:bg-champagne-light text-onyx-900 px-8 py-3.5 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(229,199,144,0.3)]">
+                            View My Work
+                        </a>
+                        <a href="#contact" class="text-gray-300 hover:text-champagne px-8 py-3.5 rounded-full border border-gray-600 hover:border-champagne transition-all duration-300 font-medium">
+                            Let's Connect
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- ABOUT SECTION -->
-    <section id="about">
-        <div class="section-header reveal">
-            <span class="section-subtitle">Biography</span>
-            <h2 class="section-title">About Me</h2>
-        </div>
-        <div class="about-grid">
-            <div class="about-text reveal">
-                <p>Halo! Saya <strong>Surya Pramuditya Prayogi</strong>, mahasiswa Teknologi Rekayasa Perangkat Lunak (NIM: B26006) yang berfokus pada pengembangan sistem IoT dan arsitektur web modern.</p>
-                <p>Saya memiliki pengalaman merancang integrasi hardware mikrokontroler (ESP32/Arduino) dengan cloud service, manajemen jaringan, serta membangun aplikasi web yang responsif dan aman.</p>
-            </div>
-            <div class="about-stats reveal">
-                <div class="stat-card">
-                    <span class="stat-number">10+</span>
-                    <span class="stat-label">Projects Completed</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">3+</span>
-                    <span class="stat-label">Years Learning</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- About Section -->
+        <section id="about" class="py-24 bg-onyx-800 relative">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal order-2 lg:order-1">
+                        <!-- Code Block Visual -->
+                        <div class="bg-onyx-900 rounded-xl p-6 border border-onyx-600 shadow-2xl relative">
+                            <div class="flex space-x-2 mb-4">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <pre class="text-sm font-mono text-gray-300 overflow-x-auto"><code class="language-javascript">const developer = {
+    name: "Surya Pramuditya Prayogi",
+    nim: "B26006",
+    role: ["Web Developer", "IoT Dev", "UI/UX Designer"],
+    stack: [
+        "HTML/CSS/JS", 
+        "Tailwind CSS", 
+        "ESP32", 
+        "IoT Protocols"
+    ],
+    passion: "Crafting intuitive digital & physical solutions"
+};
 
-    <!-- SKILLS SECTION -->
-    <section id="skills">
-        <div class="section-header reveal">
-            <span class="section-subtitle">Expertise</span>
-            <h2 class="section-title">Technical Skills</h2>
-        </div>
-        <div class="skills-grid">
-            <div class="skill-card reveal">
-                <i class="fas fa-microchip skill-icon"></i>
-                <h3 class="skill-title">IoT & Hardware</h3>
-                <div class="progress-bar-container">
-                    <div class="progress-info"><span>ESP32 / Arduino</span><span>90%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
-                </div>
-                <div class="progress-bar-container">
-                    <div class="progress-info"><span>RFID & Sensors</span><span>85%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
-                </div>
-            </div>
-            <div class="skill-card reveal">
-                <i class="fas fa-code skill-icon"></i>
-                <h3 class="skill-title">Web Development</h3>
-                <div class="progress-bar-container">
-                    <div class="progress-info"><span>HTML/CSS/JS</span><span>88%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
-                </div>
-                <div class="progress-bar-container">
-                    <div class="progress-info"><span>PHP / C++</span><span>80%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+developer.innovate();</code></pre>
+                        </div>
+                    </div>
+                    <div class="reveal order-1 lg:order-2">
+                        <div class="inline-flex items-center space-x-2 mb-4">
+                            <span class="w-8 h-[1px] bg-champagne"></span>
+                            <span class="text-champagne uppercase tracking-widest text-xs font-semibold">About Me</span>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">Bridging the Gap Between Software and Hardware.</h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            Hello! I am <strong class="text-gray-200 font-semibold">Surya Pramuditya Prayogi</strong>, a dedicated Software Engineering Technology student (NIM: B26006). I have a profound passion for building intuitive UI/UX designs and developing robust applications.
+                        </p>
+                        <p class="text-gray-400 leading-relaxed mb-8">
+                            My expertise lies in native web technologies and modern frameworks like <strong class="text-champagne font-medium">Tailwind CSS</strong>. Beyond the web, I actively develop Internet of Things (IoT) solutions using <strong class="text-champagne font-medium">ESP32</strong>, creating seamless interactions between software interfaces and physical hardware.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6 pt-6 border-t border-onyx-600">
+                            <div>
+                                <h4 class="text-white font-semibold mb-2">Web Design</h4>
+                                <p class="text-sm text-gray-500">Native Web, Tailwind, UI/UX</p>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-2">IoT Development</h4>
+                                <p class="text-sm text-gray-500">ESP32, Sensors, Dashboards</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="skill-card reveal">
-                <i class="fas fa-network-wired skill-icon"></i>
-                <h3 class="skill-title">Network & Systems</h3>
-                <div class="progress-bar-container">
-                    <div class="progress-info"><span>Cisco / Mikrotik</span><span>82%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 82%;"></div></div>
-                </div>
-                <div class="progress-bar-container">
-                    <div class="progress-info"><span>Linux / Termux</span><span>85%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- EXPERIENCE SECTION -->
-    <section id="experience">
-        <div class="section-header reveal">
-            <span class="section-subtitle">Milestones</span>
-            <h2 class="section-title">Experience & Education</h2>
-        </div>
-        <div class="timeline reveal">
-            <div class="timeline-item">
-                <span class="timeline-date">2024 - Sekarang</span>
-                <h3 class="timeline-title">Teknologi Rekayasa Perangkat Lunak</h3>
-                <p class="timeline-company">Pendidikan Tinggi vokasi / RPL</p>
-                <p>Fokus pada rekayasa perangkat lunak, algoritma, pemrograman C++, backend architecture, dan IoT hardware system.</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">2024</span>
-                <h3 class="timeline-title">Pengembang AQUA TRACK IoT</h3>
-                <p class="timeline-company">Project Mandiri</p>
-                <p>Merancang sistem monitoring air real-time berbasis ESP32, terintegrasi dengan platform cloud Blynk dan protokol HTTP.</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">2023 - 2024</span>
-                <h3 class="timeline-title">Manajemen SY SHOP Digital</h3>
-                <p class="timeline-company">SY SHOP Commercial</p>
-                <p>Mengelola alur bisnis digital, sistem transaksi elektronik, serta branding platform penjualan digital.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS SECTION -->
-    <section id="projects">
-        <div class="section-header reveal">
-            <span class="section-subtitle">Portfolio</span>
-            <h2 class="section-title">Selected Projects</h2>
-        </div>
-        
-        <div class="project-filters reveal">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="iot">IoT</button>
-            <button class="filter-btn" data-filter="web">Web</button>
-            <button class="filter-btn" data-filter="network">Network</button>
-        </div>
-
-        <div class="projects-grid">
-            <!-- PROJECT BARU: ESP32 RELAY CONTROL -->
-            <div class="project-card reveal" data-category="iot">
-                <div>
-                    <span class="project-category">IoT System • Live Demo</span>
-                    <h3>ESP32 Relay Control - 4 Channel</h3>
-                    <p>Sistem kontrol 4 relay online berbasis ESP32 + Firebase + Vercel. Bisa dikontrol dari web mana aja & tombol fisik. Pin Relay: 15, 2, 4, 16. Pin Tombol: 13, 12, 14, 27.</p>
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 bg-onyx-900 relative">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                    <div class="inline-flex items-center justify-center space-x-2 mb-4">
+                        <span class="w-8 h-[1px] bg-champagne"></span>
+                        <span class="text-champagne uppercase tracking-widest text-xs font-semibold">Portfolio</span>
+                        <span class="w-8 h-[1px] bg-champagne"></span>
+                    </div>
+                    <h3 class="text-3xl md:text-5xl font-bold text-white">Featured Projects</h3>
                 </div>
-                <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                    <a href="https://esp32server-lilac.vercel.app/" target="_blank" rel="noopener" class="project-btn" style="text-decoration:none; flex:1; text-align:center;">Live Demo <i class="fas fa-external-link-alt"></i></a>
-                    <button class="project-btn" onclick="openModal('ESP32 Relay Control - 4 Channel', 'Sistem kontrol 4 relay online menggunakan ESP32, Firebase Realtime Database, dan web Vercel. Fitur: kontrol dari web & tombol fisik 2 arah, status real-time, ALL ON/OFF, sinkronisasi otomatis via cloud. Pin Relay 15, 2, 4, 16 dan Pin Tombol 13, 12, 14, 27.')">View Details <i class="fas fa-arrow-right"></i></button>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="project-card bg-onyx-800 rounded-2xl overflow-hidden reveal group flex flex-col h-full">
+                        <div class="h-48 bg-onyx-700 relative overflow-hidden flex items-center justify-center">
+                            <!-- Placeholder visual -->
+                            <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTAgMGgyMHYyMEgwem0xMCAxMGgxMHYxMEgxMHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjA1Ii8+PC9zdmc+')]"></div>
+                            <svg class="w-16 h-16 text-champagne group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                        </div>
+                        <div class="p-8 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-semibold text-champagne tracking-wider uppercase mb-2 block">IoT Dashboard</span>
+                                <h4 class="text-xl font-bold text-white mb-3 group-hover:text-champagne transition-colors">House Control</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                                    A responsive and intuitive web dashboard connected to an ESP32 microcontroller, designed for seamless smart home automation and real-time environment monitoring.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="text-xs bg-onyx-900 text-gray-300 px-3 py-1 rounded-full border border-onyx-600">ESP32</span>
+                                <span class="text-xs bg-onyx-900 text-gray-300 px-3 py-1 rounded-full border border-onyx-600">HTML/JS</span>
+                                <span class="text-xs bg-onyx-900 text-gray-300 px-3 py-1 rounded-full border border-onyx-600">Tailwind</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card bg-onyx-800 rounded-2xl overflow-hidden reveal group flex flex-col h-full" style="transition-delay: 100ms;">
+                        <div class="h-48 bg-onyx-700 relative overflow-hidden flex items-center justify-center">
+                            <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTAgMGgyMHYyMEgwem0xMCAxMGgxMHYxMEgxMHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjA1Ii8+PC9zdmc+')]"></div>
+                            <svg class="w-16 h-16 text-champagne group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                            </svg>
+                        </div>
+                        <div class="p-8 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-semibold text-champagne tracking-wider uppercase mb-2 block">Hardware Integration</span>
+                                <h4 class="text-xl font-bold text-white mb-3 group-hover:text-champagne transition-colors">InfaSense</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                                    An advanced monitoring system bridging physical sensor data to a sleek web interface. Focused on precise data visualization and low-latency updates.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="text-xs bg-onyx-900 text-gray-300 px-3 py-1 rounded-full border border-onyx-600">IoT</span>
+                                <span class="text-xs bg-onyx-900 text-gray-300 px-3 py-1 rounded-full border border-onyx-600">WebSockets</span>
+                                <span class="text-xs bg-onyx-900 text-gray-300 px-3 py-1 rounded-full border border-onyx-600">UI/UX</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card bg-onyx-800 rounded-2xl overflow-hidden reveal group flex flex-col h-full" style="transition-delay: 200ms;">
+                        <div class="h-48 bg-onyx-700 relative overflow-hidden flex items-center justify-center">
+                            <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTAgMGgyMHYyMEgwem0xMCAxMGgxMHYxMEgxMHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjA1Ii8+PC9zdmc+')]"></div>
+                            <svg class="w-16 h-16 text-champagne group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <div class="p-8 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-semibold text-champagne tracking-wider uppercase mb-2 block">Web Development</span>
+                                <h4 class="text-xl font-bold text-white mb-3 group-hover:text-champagne transition-colors">Personal Portfolio</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                                    A premium, responsive portfolio website (this exact site) designed meticulously with a dark Onyx theme, Champagne Gold accents, and custom interactions.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="text-xs bg-onyx-900 text-gray-300 px-3 py-1 rounded-full border border-onyx-600">Pure HTML/CSS</span>
+                                <span class="text-xs bg-onyx-900 text-gray-300 px-3 py-1 rounded-full border border-onyx-600">JS</span>
+                                <span class="text-xs bg-onyx-900 text-gray-300 px-3 py-1 rounded-full border border-onyx-600">Grid Layout</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="project-card reveal" data-category="iot">
-                <div>
-                    <span class="project-category">IoT System</span>
-                    <h3>AQUA TRACK</h3>
-                    <p>Sistem monitoring kualitas dan debit air otomatis menggunakan ESP32 dan IoT Blynk Platform secara real-time.</p>
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-onyx-800 relative">
+            <div class="max-w-4xl mx-auto px-6 lg:px-8">
+                <div class="bg-onyx-900 rounded-3xl p-8 md:p-14 border border-onyx-700 shadow-2xl reveal">
+                    <div class="text-center mb-10">
+                        <h3 class="text-3xl font-bold text-white mb-4">Ready to build something great?</h3>
+                        <p class="text-gray-400">Let's connect to discuss IoT integration, web development, or UI/UX design opportunities.</p>
+                    </div>
+                    
+                    <form onsubmit="event.preventDefault();" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                                <input type="text" placeholder="John Doe" class="w-full px-4 py-3 rounded-xl input-premium text-white placeholder-gray-600" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                <input type="email" placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl input-premium text-white placeholder-gray-600" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                            <textarea rows="4" placeholder="How can I help you?" class="w-full px-4 py-3 rounded-xl input-premium text-white placeholder-gray-600 resize-none" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="w-full md:w-auto bg-champagne hover:bg-champagne-light text-onyx-900 px-10 py-4 rounded-xl font-bold transition-all duration-300 transform hover:-translate-y-1 shadow-[0_4px_15px_rgba(229,199,144,0.2)]">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <button class="project-btn" onclick="openModal('AQUA TRACK', 'AQUA TRACK adalah solusi pemantauan air nirkabel menggunakan ESP32 dan Blynk Cloud. Fitur utama mencakup telemetry live data, peringatan ambang batas otomatis, dan manajemen konsumsi daya rendah.')">View Details <i class="fas fa-arrow-right"></i></button>
             </div>
+        </section>
+    </main>
 
-            <div class="project-card reveal" data-category="web">
-                <div>
-                    <span class="project-category">E-Commerce / Web</span>
-                    <h3>SY SHOP Ecosystem</h3>
-                    <p>Platform layanan transaksi digital dengan alur checkout instan dan sistem manajemen pembeli terstruktur.</p>
-                </div>
-                <button class="project-btn" onclick="openModal('SY SHOP Ecosystem', 'Platform web bisnis digital yang mempermudah otomatisasi pesanan, pencatatan keuangan, dan verifikasi status pembayaran bagi pelanggan.')">View Details <i class="fas fa-arrow-right"></i></button>
+    <!-- Footer -->
+    <footer class="bg-onyx-900 border-t border-onyx-700 py-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-4 md:mb-0">
+                <span class="text-xl font-bold text-white">S<span class="text-champagne">P</span>P.</span>
             </div>
-
-            <div class="project-card reveal" data-category="iot">
-                <div>
-                    <span class="project-category">Smart School / IoT</span>
-                    <h3>RFID School Gate System</h3>
-                    <p>Arsitektur presensi sekolah berbasis kartu RFID terhubung ke dashboard web pengawas & gateway pembayaran.</p>
-                </div>
-                <button class="project-btn" onclick="openModal('RFID School Gate System', 'Prototip infrastruktur kartu RFID pintar untuk absensi otomatis siswa dan integrasi pembayaran kantin secara langsung ke server cloud.')">View Details <i class="fas fa-arrow-right"></i></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES SECTION -->
-    <section id="services">
-        <div class="section-header reveal">
-            <span class="section-subtitle">Offerings</span>
-            <h2 class="section-title">My Services</h2>
-        </div>
-        <div class="services-grid">
-            <div class="service-card reveal">
-                <i class="fas fa-laptop-code service-icon"></i>
-                <h3>Web Development</h3>
-                <p>Pembuatan website portofolio, landing page, dan sistem informasi responsif yang cepat dan modern.</p>
-            </div>
-            <div class="service-card reveal">
-                <i class="fas fa-microchip service-icon"></i>
-                <h3>IoT Prototyping</h3>
-                <p>Perancangan perangkat keras pintar berbasis ESP32/Arduino terhubung sensor & kontrol jarak jauh.</p>
-            </div>
-            <div class="service-card reveal">
-                <i class="fas fa-network-wired service-icon"></i>
-                <h3>Network Configuration</h3>
-                <p>Perancangan dan penataan infrastruktur jaringan komputer lokal (LAN/WLAN) yang stabil.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact">
-        <div class="section-header reveal">
-            <span class="section-subtitle">Get In Touch</span>
-            <h2 class="section-title">Contact Me</h2>
-        </div>
-        <div class="contact-container">
-            <div class="contact-boxes reveal">
-                <a href="https://wa.me/6280000000000" target="_blank" class="contact-box">
-                    <i class="fab fa-whatsapp"></i>
-                    <h4>WhatsApp</h4>
-                    <p>Chat Langsung</p>
+            <p class="text-gray-500 text-sm text-center md:text-left mb-4 md:mb-0">
+                &copy; 2023 Surya Pramuditya Prayogi (B26006). All rights reserved.
+            </p>
+            <div class="flex space-x-6">
+                <!-- Social Links Placeholder (Using simple SVGs) -->
+                <a href="#" class="text-gray-400 hover:text-champagne transition-colors">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                    </svg>
                 </a>
-                <a href="mailto:emailanda@gmail.com" class="contact-box">
-                    <i class="far fa-envelope"></i>
-                    <h4>Email</h4>
-                    <p>Kirim Pesan</p>
-                </a>
-                <a href="https://instagram.com/" target="_blank" class="contact-box">
-                    <i class="fab fa-instagram"></i>
-                    <h4>Instagram</h4>
-                    <p>Direct Message</p>
+                <a href="#" class="text-gray-400 hover:text-champagne transition-colors">
+                    <span class="sr-only">LinkedIn</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
+                    </svg>
                 </a>
             </div>
-
-            <form class="contact-form reveal" id="contact-form">
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Nama Anda" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-input" placeholder="Email Anda" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-input" rows="5" placeholder="Pesan Anda" required></textarea>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Kirim Pesan</button>
-            </form>
         </div>
-    </section>
-
-    <!-- MODAL PREVIEW -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-modal">&times;</span>
-            <h3 id="modal-title" style="color: var(--accent-gold); margin-bottom: 15px;"></h3>
-            <p id="modal-text" style="color: var(--text-muted); line-height: 1.8;"></p>
-        </div>
-    </div>
-
-    <!-- TOAST NOTIFICATION -->
-    <div class="toast" id="toast">Pesan Anda berhasil dikirim!</div>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 Surya Pramuditya Prayogi. All Rights Reserved.</p>
     </footer>
 
-    <!-- Script JS -->
-    <script src="script.js"></script>
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            } else {
+                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        });
+
+        // Close mobile menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            });
+        });
+
+        // Sticky Navbar Effect on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
 </body>
 </html>
